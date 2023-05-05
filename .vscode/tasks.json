@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Redis start",
+      "type": "shell",
+      "command": "docker run -p 6379:6379 -it redis/redis-stack:latest"
+    },
+    {
+      "label": "Start all",
+      "dependsOn": ["Redis start"],
+      "problemMatcher": []
+    }
+  ]
+}
