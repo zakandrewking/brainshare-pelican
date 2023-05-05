@@ -2,13 +2,28 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Supabase start",
+      "type": "shell",
+      "command": "supabase start"
+    },
+    {
+      "label": "Supabase generate types",
+      "type": "shell",
+      "command": "supabase gen types typescript --local > frontend/src/app/database.types.ts"
+    },
+    {
+      "label": "Supabase db reset",
+      "type": "shell",
+      "command": "supabase db reset"
+    },
+    {
       "label": "Redis start",
       "type": "shell",
       "command": "docker run -p 6379:6379 -it redis/redis-stack:latest"
     },
     {
       "label": "Start all",
-      "dependsOn": ["Redis start"],
+      "dependsOn": ["Supabase start", "Redis start"],
       "problemMatcher": []
     }
   ]

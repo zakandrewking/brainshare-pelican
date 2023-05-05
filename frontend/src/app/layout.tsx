@@ -5,6 +5,10 @@ import Link from "next/link";
 
 import { BeakerIcon, HomeIcon } from "@heroicons/react/24/solid";
 
+import ClientSideDrawerHandler from "./components/ClientSideDrawerHandler";
+import { AuthProvider } from "./supabase";
+import { composeProviders } from "./util";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,58 +21,72 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const Providers = composeProviders([AuthProvider]);
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <div className="drawer drawer-mobile">
-          <input id="drawer" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content">
-            <nav className="navbar border-b">
-              <label
-                htmlFor="drawer"
-                className="btn btn-square btn-ghost lg:hidden"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-6 h-6 stroke-current"
+    <Providers>
+      <html lang="en">
+        <body className={inter.className}>
+          <div className="drawer drawer-mobile">
+            <input
+              id="top-nav-drawer"
+              type="checkbox"
+              className="drawer-toggle"
+            />
+            <ClientSideDrawerHandler />
+            <div className="drawer-content">
+              <nav className="navbar border-b">
+                <label
+                  htmlFor="top-nav-drawer"
+                  className="btn btn-square btn-ghost lg:hidden"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
-                </svg>
-              </label>
-              <div className="flex-1 px-2 mx-2 prose">
-                <h1>Pelican</h1>
-              </div>
-            </nav>
-            <main className="p-6">{children}</main>
+                  <svg
+                    width="20"
+                    height="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block w-6 h-6 stroke-current"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    ></path>
+                  </svg>
+                </label>
+                <div className="flex-1 px-2 mx-2 prose">
+                  <h1>Pelican</h1>
+                </div>
+              </nav>
+              <main className="p-6">{children}</main>
+            </div>
+            <div className="drawer-side border-r">
+              <label htmlFor="top-nav-drawer" className="drawer-overlay" />
+              <ul className="menu w-40 pt-16 bg-base-100 flex-col justify-between">
+                <div>
+                  <li>
+                    <Link href="/">
+                      <HomeIcon className="h-6 w-6" />
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/account">
+                      <BeakerIcon className="h-6 w-6" />
+                      Account
+                    </Link>
+                  </li>
+                </div>
+                <div className="mx-auto pb-2">
+                  version: {process.env.GIT_SHA}
+                </div>
+              </ul>
+            </div>
           </div>
-          <div className="drawer-side border-r">
-            <label htmlFor="drawer" className="drawer-overlay" />
-            <ul className="menu w-40 pt-16 bg-base-100">
-              <li>
-                <Link href="/">
-                  <HomeIcon className="h-6 w-6" />
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/account">
-                  <BeakerIcon className="h-6 w-6" />
-                  Account
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </body>
-    </html>
+        </body>
+      </html>
+    </Providers>
   );
 }

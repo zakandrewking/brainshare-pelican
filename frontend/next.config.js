@@ -1,5 +1,16 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+// get the git hash
+const cp = require("child_process");
+const gitSha = cp.execSync("git rev-parse --short HEAD", {
+  cwd: __dirname,
+  encoding: "utf8",
+});
+
+module.exports = {
+  env: {
+    GIT_SHA: gitSha,
+  },
   experimental: {
     appDir: true,
   },
@@ -18,5 +29,3 @@ const nextConfig = {
     },
   }),
 };
-
-module.exports = nextConfig;
