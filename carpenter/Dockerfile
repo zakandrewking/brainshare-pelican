@@ -28,4 +28,4 @@ COPY . /app/
 
 EXPOSE 8080
 
-CMD ["celery", "-A", "queue", "worker", "-l", "info"]
+CMD ["celery", "-A", "carpenter.tasks", "worker", "--loglevel", "INFO"]

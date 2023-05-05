@@ -1,5 +1,9 @@
 import "./globals.css";
+
 import { Inter } from "next/font/google";
+import Link from "next/link";
+
+import { BeakerIcon, HomeIcon } from "@heroicons/react/24/solid";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +23,7 @@ export default function RootLayout({
         <div className="drawer drawer-mobile">
           <input id="drawer" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
-            <nav className="navbar bg-base-100">
+            <nav className="navbar border-b">
               <label
                 htmlFor="drawer"
                 className="btn btn-square btn-ghost lg:hidden"
@@ -40,18 +44,26 @@ export default function RootLayout({
                   ></path>
                 </svg>
               </label>
-              <div className="flex-1 px-2 mx-2">Pelican</div>
+              <div className="flex-1 px-2 mx-2 prose">
+                <h1>Pelican</h1>
+              </div>
             </nav>
-            {children}
+            <main className="p-6">{children}</main>
           </div>
-          <div className="drawer-side">
+          <div className="drawer-side border-r">
             <label htmlFor="drawer" className="drawer-overlay" />
-            <ul className="menu p-4 w-80 bg-base-100">
+            <ul className="menu w-40 pt-16 bg-base-100">
               <li>
-                <a>Sidebar Item 1</a>
+                <Link href="/">
+                  <HomeIcon className="h-6 w-6" />
+                  Home
+                </Link>
               </li>
               <li>
-                <a>Sidebar Item 2</a>
+                <Link href="/account">
+                  <BeakerIcon className="h-6 w-6" />
+                  Account
+                </Link>
               </li>
             </ul>
           </div>

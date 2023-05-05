@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "Debug carpenter",
+      "module": "poetry",
+      "args": [
+        "run",
+        "celery",
+        "-A",
+        "carpenter.tasks",
+        "worker",
+        "--loglevel",
+        "INFO"
+      ],
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

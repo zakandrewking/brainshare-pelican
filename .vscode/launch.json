@@ -3,7 +3,7 @@
   "compounds": [
     {
       "name": "Debug all",
-      "configurations": ["Next.js: debug full stack", "Debug queue"]
+      "configurations": ["Next.js: debug full stack", "Debug carpenter"]
     }
   ]
 }
