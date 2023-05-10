@@ -62,9 +62,9 @@ export default function RootLayout({
               </nav>
               <main className="p-6">{children}</main>
             </div>
-            <div className="drawer-side border-r">
+            <div className="drawer-side">
               <label htmlFor="top-nav-drawer" className="drawer-overlay" />
-              <ul className="menu w-40 pt-16 bg-base-100 flex-col justify-between">
+              <ul className="menu bg-base-200 w-40 pt-16 flex flex-col justify-between">
                 <div>
                   <li>
                     <Link href="/">

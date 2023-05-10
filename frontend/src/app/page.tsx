@@ -1,10 +1,12 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import FileUpload from "./FileUpload";
 
 export default function Home() {
   return (
-    <div className="prose">
-      <h2>Home</h2>
+    <div className="flex flex-col gap-6">
+      <div className="prose">
+        <h2>Home</h2>
+      </div>
+      <FileUpload />
     </div>
   );
 }

@@ -23,13 +23,17 @@ const supabase = createClient<Database>(apiUrl, anonKey, {});
 
 export default supabase;
 
-class AuthState {
-  session: Session | null = null;
-  role: string | null = null;
+interface AuthState {
+  loaded: boolean;
+  session: Session | null;
+  role: string | null;
 }
-export const AuthContext = createContext<AuthState>(new AuthState());
+const initialState = { loaded: false, role: null, session: null };
 
-const getRole = async (user_id: string): Promise<string | null> => {
+export const AuthContext = createContext<AuthState>(initialState);
+
+const getRole = async (user_id: string | null): Promise<string | null> => {
+  if (user_id === null) return null;
   const { data, error } = await supabase
     .from("user_role")
     .select("role")
@@ -40,7 +44,7 @@ const getRole = async (user_id: string): Promise<string | null> => {
 };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<AuthState>(new AuthState());
+  const [state, setState] = useState<AuthState>(initialState);
 
   useEffect(() => {
     // get session
@@ -48,24 +52,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const {
         data: { session },
       } = await supabase.auth.getSession();
-      const state = new AuthState();
-      if (session) {
-        state.session = session;
-        state.role = await getRole(session.user.id);
-      }
-      setState(state);
+      setState({
+        loaded: true,
+        session,
+        role: await getRole(session?.user.id ?? null),
+      });
     })();
 
     // watch for changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (_, session) => {
-      const state = new AuthState();
-      if (session) {
-        state.session = session;
-        state.role = await getRole(session.user.id);
-      }
-      setState(state);
+      setState({
+        loaded: true,
+        session,
+        role: await getRole(session?.user.id ?? null),
+      });
     });
 
     // clean up
