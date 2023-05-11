@@ -10,3 +10,10 @@ export function composeProviders(providers: any) {
       }
   );
 }
+
+export function capitalizeFirstLetter(s: string) {
+  return s
+    .split("_")
+    .map((x) => x.charAt(0).toUpperCase() + x.slice(1))
+    .join(" ");
+}

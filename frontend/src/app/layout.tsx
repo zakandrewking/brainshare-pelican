@@ -1,13 +1,18 @@
 import "./globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 import { Inter } from "next/font/google";
-import Link from "next/link";
 
-import { BeakerIcon, HomeIcon } from "@heroicons/react/24/solid";
+import { config as faConfig } from "@fortawesome/fontawesome-svg-core";
 
 import ClientSideDrawerHandler from "./components/ClientSideDrawerHandler";
+import SideMenu from "./components/SideMenu";
 import { AuthProvider } from "./supabase";
 import { composeProviders } from "./util";
+
+// Tell Font Awesome to skip adding the CSS automatically since it's already
+// imported above
+faConfig.autoAddCss = false;
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,32 +62,14 @@ export default function RootLayout({
                   </svg>
                 </label>
                 <div className="flex-1 px-2 mx-2 prose">
-                  <h1>Pelican</h1>
+                  <h1 style={{ color: "hsl(var(--p))" }}>Pelican</h1>
                 </div>
               </nav>
               <main className="p-6">{children}</main>
             </div>
             <div className="drawer-side">
               <label htmlFor="top-nav-drawer" className="drawer-overlay" />
-              <ul className="menu bg-base-200 w-40 pt-16 flex flex-col justify-between">
-                <div>
-                  <li>
-                    <Link href="/">
-                      <HomeIcon className="h-6 w-6" />
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/account">
-                      <BeakerIcon className="h-6 w-6" />
-                      Account
-                    </Link>
-                  </li>
-                </div>
-                <div className="mx-auto pb-2">
-                  version: {process.env.GIT_SHA}
-                </div>
-              </ul>
+              <SideMenu />
             </div>
           </div>
         </body>

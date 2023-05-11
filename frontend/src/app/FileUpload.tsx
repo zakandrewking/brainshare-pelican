@@ -33,10 +33,7 @@ export default function FileUpload() {
     );
 
   return (
-    <div
-      className="btn btn-info btn-outline h-auto normal-case p-3"
-      {...getRootProps()}
-    >
+    <div className="btn btn-ghost h-auto normal-case p-3" {...getRootProps()}>
       <input {...getInputProps()} />
       <div className="">
         <h2 className="font-bold text-xl mb-6">Upload a file</h2>

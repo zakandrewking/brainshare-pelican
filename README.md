@@ -1,5 +1,9 @@
 # brainshare-pelican
 
+# Status
+
+This is in early stage development, but feel free to peruse the code.
+
 ## Core challenges:
 
 1. How to balance individual contributions with centralized curation, for both
