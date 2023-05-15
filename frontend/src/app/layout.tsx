@@ -61,8 +61,16 @@ export default function RootLayout({
                     ></path>
                   </svg>
                 </label>
-                <div className="flex-1 px-2 mx-2 prose">
-                  <h1 style={{ color: "hsl(var(--p))" }}>Pelican</h1>
+                <div className="px-2 mx-2">
+                  <h1
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "bolder",
+                      color: "hsl(var(--p))",
+                    }}
+                  >
+                    Pelican
+                  </h1>
                 </div>
               </nav>
               <main className="p-6">{children}</main>

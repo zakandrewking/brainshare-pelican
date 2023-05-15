@@ -8,7 +8,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import pluralize from "pluralize";
 import { capitalizeFirstLetter } from "../util";
 
 const icons: { [key: string]: ReactNode } = {
@@ -56,7 +56,7 @@ export default function SideMenu() {
           <li key={t.type}>
             <Link href={`/${t.type}`}>
               {icons[t.icon]}
-              {capitalizeFirstLetter(t.type)}
+              {capitalizeFirstLetter(pluralize(t.type))}
             </Link>
           </li>
         ))}

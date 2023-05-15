@@ -34,7 +34,80 @@ export interface Database {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      edge: {
+        Row: {
+          data: Json | null
+          destination: number
+          public: boolean | null
+          source: number
+          user_id: string
+        }
+        Insert: {
+          data?: Json | null
+          destination: number
+          public?: boolean | null
+          source: number
+          user_id: string
+        }
+        Update: {
+          data?: Json | null
+          destination?: number
+          public?: boolean | null
+          source?: number
+          user_id?: string
+        }
+      }
+      node: {
+        Row: {
+          data: Json | null
+          id: number
+          public: boolean | null
+          type: string
+          user_id: string
+        }
+        Insert: {
+          data?: Json | null
+          id?: number
+          public?: boolean | null
+          type: string
+          user_id: string
+        }
+        Update: {
+          data?: Json | null
+          id?: number
+          public?: boolean | null
+          type?: string
+          user_id?: string
+        }
+      }
+      profile: {
+        Row: {
+          id: string
+          username: string
+        }
+        Insert: {
+          id: string
+          username: string
+        }
+        Update: {
+          id?: string
+          username?: string
+        }
+      }
+      user_role: {
+        Row: {
+          role: string
+          user_id: string
+        }
+        Insert: {
+          role: string
+          user_id: string
+        }
+        Update: {
+          role?: string
+          user_id?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never

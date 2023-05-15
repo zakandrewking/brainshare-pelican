@@ -12,8 +12,8 @@ create policy "Authenticated user can manage their nodes" on node
   for all using (auth.uid() = user_id);
 
 create table edge (
-  from bigint references node(id) not null,
-  to bigint references node(id) not null,
+  source bigint references node(id) not null,
+  destination bigint references node(id) not null,
   user_id uuid references profile(id) not null,
   data jsonb,
   public boolean default false
