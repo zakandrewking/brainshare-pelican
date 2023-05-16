@@ -20,3 +20,11 @@ create table user_role (
 alter table user_role enable row level security;
 create policy "Authenticated user can read their own role" on user_role
     for select using (auth.uid() = user_id);
+
+-- utils
+
+create function is_admin() returns boolean as $$
+    select exists(
+        select user_id from public.user_role where user_id = auth.uid() and role = 'admin'
+    );
+$$ language sql;

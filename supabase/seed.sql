@@ -12,6 +12,10 @@ insert into profile (id, username) values
 insert into user_role (user_id, role) values
     ('f76629c5-a070-4bbc-9918-64beaea48848', 'admin');
 
+insert into node_type (name, icon, top_level) values
+    ('chemical', 'atom', true),
+    ('synonym', 'arrowRightArrowLeft', true);
+
 insert into node (id, type, data, user_id, public) values
     (1, 'chemical', '{"name": "water"}', 'f76629c5-a070-4bbc-9918-64beaea48848', true),
     (2, 'synonym', '{"value": "h2o"}', 'f76629c5-a070-4bbc-9918-64beaea48848', true),

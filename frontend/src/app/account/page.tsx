@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import { useAuth } from "../supabase";
+import { useAuth } from "../supabase/auth";
 
 export default function Account() {
   const { session } = useAuth();

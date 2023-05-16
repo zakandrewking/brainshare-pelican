@@ -1,11 +1,12 @@
 "use client";
+
 import { get as _get } from "lodash";
 import Link from "next/link";
 import pluralize from "pluralize";
 import React, { ReactNode } from "react";
 import useSWRInfinite from "swr/infinite";
 
-import supabase from "../supabase";
+import supabase from "../supabase/client";
 import { capitalizeFirstLetter } from "../util";
 
 const PAGE_SIZE = 20;

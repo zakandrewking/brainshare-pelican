@@ -80,6 +80,23 @@ export interface Database {
           user_id?: string
         }
       }
+      node_type: {
+        Row: {
+          icon: string | null
+          name: string
+          top_level: boolean | null
+        }
+        Insert: {
+          icon?: string | null
+          name: string
+          top_level?: boolean | null
+        }
+        Update: {
+          icon?: string | null
+          name?: string
+          top_level?: boolean | null
+        }
+      }
       profile: {
         Row: {
           id: string
@@ -113,7 +130,10 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never

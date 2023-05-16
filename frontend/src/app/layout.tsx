@@ -7,7 +7,7 @@ import { config as faConfig } from "@fortawesome/fontawesome-svg-core";
 
 import ClientSideDrawerHandler from "./components/ClientSideDrawerHandler";
 import SideMenu from "./components/SideMenu";
-import { AuthProvider } from "./supabase";
+import { AuthProvider } from "./supabase/auth";
 import { composeProviders } from "./util";
 
 // Tell Font Awesome to skip adding the CSS automatically since it's already

@@ -2,7 +2,7 @@
 
 import { useDropzone } from "react-dropzone";
 
-import { useAuth } from "./supabase";
+import { useAuth } from "./supabase/auth";
 import Link from "next/link";
 
 export default function FileUpload() {

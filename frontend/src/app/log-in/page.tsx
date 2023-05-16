@@ -7,7 +7,8 @@ import { useMediaQuery } from "usehooks-ts";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 
-import supabase, { useAuth } from "../supabase";
+import supabase from "../supabase/client";
+import { useAuth } from "../supabase/auth";
 
 export default function LogIn() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");

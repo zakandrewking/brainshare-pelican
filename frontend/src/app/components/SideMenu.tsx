@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
-import { ReactNode } from "react";
+import pluralize from "pluralize";
+import { ReactNode, use } from "react";
+import useSwr from "swr";
 
 import {
   faArrowRightArrowLeft,
@@ -8,7 +12,8 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import pluralize from "pluralize";
+
+import supabase from "../supabase/client";
 import { capitalizeFirstLetter } from "../util";
 
 const icons: { [key: string]: ReactNode } = {
@@ -29,16 +34,15 @@ const icons: { [key: string]: ReactNode } = {
   },
 };
 
-interface NodeType {
-  type: string;
-  icon: string;
-}
-
 export default function SideMenu() {
-  const nodesTypes: NodeType[] = [
-    { type: "chemical", icon: "atom" },
-    { type: "reaction", icon: "arrowRightArrowLeft" },
-  ];
+  const { data: nodesTypes, error } = useSwr("/node_type", async () => {
+    const { data, error } = await supabase.from("node_type").select();
+    if (error) throw Error(String(error));
+    return data;
+  });
+
+  if (error || !nodesTypes) return <></>;
+
   return (
     <ul className="menu bg-base-200 w-40 pt-16 flex flex-col justify-between">
       <div>
@@ -53,10 +57,10 @@ export default function SideMenu() {
           </Link>
         </li>
         {nodesTypes.map((t) => (
-          <li key={t.type}>
-            <Link href={`/${t.type}`}>
-              {icons[t.icon]}
-              {capitalizeFirstLetter(pluralize(t.type))}
+          <li key={t.name}>
+            <Link href={`/${t.name}`}>
+              {icons[t.icon || ""]}
+              {capitalizeFirstLetter(pluralize(t.name))}
             </Link>
           </li>
         ))}
