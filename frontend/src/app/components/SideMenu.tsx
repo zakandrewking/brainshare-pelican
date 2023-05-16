@@ -1,48 +1,10 @@
-"use client";
-
 import Link from "next/link";
-import pluralize from "pluralize";
-import { ReactNode, use } from "react";
-import useSwr from "swr";
+import { ReactNode } from "react";
 
-import {
-  faArrowRightArrowLeft,
-  faAtom,
-  faSwatchbook,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSwatchbook, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import supabase from "../supabase/client";
-import { capitalizeFirstLetter } from "../util";
-
-const icons: { [key: string]: ReactNode } = {
-  get atom() {
-    return <FontAwesomeIcon icon={faAtom} size="lg" color="hsl(var(--p))" />;
-  },
-  get arrowRightArrowLeft() {
-    return (
-      <FontAwesomeIcon
-        icon={faArrowRightArrowLeft}
-        size="lg"
-        color="hsl(var(--p))"
-      />
-    );
-  },
-  get default() {
-    return <></>;
-  },
-};
-
-export default function SideMenu() {
-  const { data: nodesTypes, error } = useSwr("/node_type", async () => {
-    const { data, error } = await supabase.from("node_type").select();
-    if (error) throw Error(String(error));
-    return data;
-  });
-
-  if (error || !nodesTypes) return <></>;
-
+export default function SideMenu({ children }: { children: ReactNode }) {
   return (
     <ul className="menu bg-base-200 w-40 pt-16 flex flex-col justify-between">
       <div>
@@ -56,14 +18,7 @@ export default function SideMenu() {
             Home
           </Link>
         </li>
-        {nodesTypes.map((t) => (
-          <li key={t.name}>
-            <Link href={`/${t.name}`}>
-              {icons[t.icon || ""]}
-              {capitalizeFirstLetter(pluralize(t.name))}
-            </Link>
-          </li>
-        ))}
+        {children}
         <li key="account">
           <Link href="/account">
             <FontAwesomeIcon icon={faUser} size="lg" color="hsl(var(--p))" />

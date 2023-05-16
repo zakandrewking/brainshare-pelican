@@ -3,7 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import supabase, { useAuth } from "../supabase/auth";
+import { useAuth } from "../supabase/auth";
+import supabase from "../supabase/client";
 
 export default function LogOut() {
   const router = useRouter();
