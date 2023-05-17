@@ -1,3 +1,6 @@
+// Make sure nothing is SSG because the parallel routes, (e.g. nav) are dynamic
+export const revalidate = 10;
+
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
@@ -69,6 +72,12 @@ export default function RootLayout(props: {
                       color: "hsl(var(--p))",
                     }}
                   >
+                    {/* <div
+                      className="animate-bounce"
+                      style={{ fontSize: "80px", display: "inline-block" }}
+                    >
+                      �
+                    </div> */}
                     Pelican
                   </h1>
                 </div>
