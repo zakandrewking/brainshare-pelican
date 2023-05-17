@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://brainshare.io/pelican",
+  "homepage": "https://brainshare-pelican.vercel.app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -26,7 +26,7 @@ export default function LogIn() {
       <Auth
         supabaseClient={supabase}
         providers={["github"]}
-        redirectTo={`https://brainshare.io/pelican${
+        redirectTo={`https://brainshare-pelican.vercel.app${
           searchParams.get("redirect") ?? "/account"
         }`}
         onlyThirdPartyProviders={process.env.NODE_ENV !== "development"}

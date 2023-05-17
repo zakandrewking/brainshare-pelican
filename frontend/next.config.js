@@ -14,18 +14,18 @@ module.exports = {
   experimental: {
     appDir: true,
   },
-  basePath: "/pelican",
-  // for debugging, redirect localhost to /metabolism
-  ...(process.env.NODE_ENV === "development" && {
-    async redirects() {
-      return [
-        {
-          source: "/",
-          destination: "/pelican",
-          basePath: false,
-          permanent: false,
-        },
-      ];
-    },
-  }),
+  // basePath: "/pelican",
+  // // for debugging, redirect localhost to /metabolism
+  // ...(process.env.NODE_ENV === "development" && {
+  //   async redirects() {
+  //     return [
+  //       {
+  //         source: "/",
+  //         destination: "/pelican",
+  //         basePath: false,
+  //         permanent: false,
+  //       },
+  //     ];
+  //   },
+  // }),
 };
