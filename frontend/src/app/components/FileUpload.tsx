@@ -23,11 +23,7 @@ export default function FileUpload() {
         if (error) {
           throw Error(`${error.name} - ${error.message}`);
         }
-        // TODO optimistic update
-        mutate("/files", (files) => [
-          ...files,
-          { name: fileName, updated_at: new Date() },
-        ]);
+        mutate("/files", (files) => [...files, { name: fileName }]);
       } catch (error) {
         console.log(`Error Uploading file: ${error}`);
         setError("Something went wrong. Please try again.");
@@ -54,7 +50,7 @@ export default function FileUpload() {
 
   if (!session)
     return (
-      <Link href="/account?redirect=/" className="btn">
+      <Link href="/account?redirect=/files" className="btn">
         Log in to upload a file
       </Link>
     );

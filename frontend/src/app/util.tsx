@@ -17,3 +17,7 @@ export function capitalizeFirstLetter(s: string) {
     .map((x) => x.charAt(0).toUpperCase() + x.slice(1))
     .join(" ");
 }
+
+export function stripFileNameUuid(fileName: string) {
+  return fileName.replace(/^[^.]*\./, "");
+}

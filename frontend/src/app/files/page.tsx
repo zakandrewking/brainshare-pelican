@@ -1,26 +1,21 @@
 "use client";
-
+import Link from "next/link";
 import { useState } from "react";
 import useSWR from "swr";
 
 import FileUpload from "@/app/components/FileUpload";
 import supabase from "@/app/supabase/client";
 import {
+  faBoltLightning,
   faDownload,
   faFileCode,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function stripFileNameUUID(fileName: string) {
-  return fileName.replace(/^[^.]*\./, "");
-}
+import { stripFileNameUuid } from "../util";
 
-export default function Files({
-  params,
-}: {
-  params: { resource: string; id: string };
-}) {
+export default function Files() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const fetcher = async () => {
@@ -33,7 +28,7 @@ export default function Files({
       const { data, error } = await supabase.storage
         .from("files")
         .createSignedUrl(file.name, 3600, {
-          download: stripFileNameUUID(file.name),
+          download: stripFileNameUuid(file.name),
         });
       if (error) {
         throw Error(`${error.name} - ${error.message}`);
@@ -92,23 +87,24 @@ export default function Files({
           <table className="table">
             <thead>
               <tr>
-                <th></th>
-                <th>Name</th>
+                <th className="!relative">Name</th>
                 <th>Uploaded</th>
-                <th>Delete</th>
-                <th>Download</th>
+                <th className="max-w-[90px]">Delete</th>
+                <th className="max-w-[90px]">Download</th>
+                <th className="max-w-[90px]">Process</th>
               </tr>
             </thead>
             <tbody>
               {files.map((file) => (
                 <tr key={file.name}>
-                  <th>
-                    <FontAwesomeIcon icon={faFileCode} />
-                  </th>
-                  <td>
+                  <th className="!relative">
+                    <FontAwesomeIcon
+                      icon={faFileCode}
+                      style={{ marginRight: "8px" }}
+                    />
                     {/* strip name up to the first . */}
-                    {stripFileNameUUID(file.name)}
-                  </td>
+                    {stripFileNameUuid(file.name)}
+                  </th>
                   <td>{file.created_at}</td>
                   <td>
                     <button
@@ -119,9 +115,20 @@ export default function Files({
                     </button>
                   </td>
                   <td>
-                    <a href={file.signedUrl} className="btn">
+                    <a
+                      href={file.signedUrl}
+                      className={`btn ${file.signedUrl ? "" : "btn-disabled"}`}
+                    >
                       <FontAwesomeIcon icon={faDownload} />
                     </a>
+                  </td>
+                  <td>
+                    <Link
+                      href={`/files/${file.name}/process`}
+                      className="btn btn-primary"
+                    >
+                      <FontAwesomeIcon icon={faBoltLightning} />
+                    </Link>
                   </td>
                 </tr>
               ))}

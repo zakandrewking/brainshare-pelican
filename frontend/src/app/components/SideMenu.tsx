@@ -2,9 +2,10 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 import {
+  // faDiagramProject,
+  faFile,
   faSwatchbook,
   faUser,
-  faFile,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -18,20 +19,43 @@ export default function SideMenu({ children }: { children: ReactNode }) {
               icon={faSwatchbook}
               size="lg"
               color="hsl(var(--p))"
+              fixedWidth
             />
             Home
           </Link>
         </li>
+        <div className="divider" />
         {children}
+        <div className="divider" />
+        {/* <li key="graph">
+          <Link href="/graph">
+            <FontAwesomeIcon
+              icon={faDiagramProject}
+              size="lg"
+              color="hsl(var(--p))"
+            />
+            Graph
+          </Link>
+        </li> */}
         <li key="files">
           <Link href="/files">
-            <FontAwesomeIcon icon={faFile} size="lg" color="hsl(var(--p))" />
+            <FontAwesomeIcon
+              icon={faFile}
+              size="lg"
+              color="hsl(var(--p))"
+              fixedWidth
+            />
             Files
           </Link>
         </li>
         <li key="account">
           <Link href="/account">
-            <FontAwesomeIcon icon={faUser} size="lg" color="hsl(var(--p))" />
+            <FontAwesomeIcon
+              icon={faUser}
+              size="lg"
+              color="hsl(var(--p))"
+              fixedWidth
+            />
             Account
           </Link>
         </li>
