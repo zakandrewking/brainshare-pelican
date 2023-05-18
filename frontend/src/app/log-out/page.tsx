@@ -12,7 +12,7 @@ export default function LogOut() {
 
   useEffect(() => {
     supabase.auth.signOut().then(() => {
-      if (!session) router.replace("/log-in");
+      if (!session) router.replace("/account");
     });
   }, [router, session]);
 

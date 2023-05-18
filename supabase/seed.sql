@@ -17,10 +17,14 @@ insert into node_type (name, icon, top_level) values
     ('synonym', 'arrowRightArrowLeft', true);
 
 insert into node (id, type, data, user_id, public) values
-    (1, 'chemical', '{"name": "water"}', 'f76629c5-a070-4bbc-9918-64beaea48848', true),
+    (1, 'chemical', '{"name": "water", "formula": "h2o"}', 'f76629c5-a070-4bbc-9918-64beaea48848', true),
     (2, 'synonym', '{"value": "h2o"}', 'f76629c5-a070-4bbc-9918-64beaea48848', true),
-    (3, 'chemical', '{"name": "hydrogen"}', 'f76629c5-a070-4bbc-9918-64beaea48848', true);
+    (3, 'chemical', '{"name": "hydrogen"}', 'f76629c5-a070-4bbc-9918-64beaea48848', true),
+    (4, 'chemical', '{}', 'f76629c5-a070-4bbc-9918-64beaea48848', true);
 
 insert into edge (source, destination, user_id, public) values
     (1, 2, 'f76629c5-a070-4bbc-9918-64beaea48848', true);
 
+-- Use Postgres to create a bucket.
+
+insert into storage.buckets (id, name) values ('files', 'files');

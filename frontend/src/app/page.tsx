@@ -1,12 +1,9 @@
-import FileUpload from "./FileUpload";
+import FileUpload from "./components/FileUpload";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="prose">
-        <h2>Home</h2>
-      </div>
-      <FileUpload />
+    <div className="prose">
+      <h2>Hi hi hi</h2>
     </div>
   );
 }

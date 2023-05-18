@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 
-import { faSwatchbook, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSwatchbook,
+  faUser,
+  faFile,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SideMenu({ children }: { children: ReactNode }) {
@@ -19,6 +23,12 @@ export default function SideMenu({ children }: { children: ReactNode }) {
           </Link>
         </li>
         {children}
+        <li key="files">
+          <Link href="/files">
+            <FontAwesomeIcon icon={faFile} size="lg" color="hsl(var(--p))" />
+            Files
+          </Link>
+        </li>
         <li key="account">
           <Link href="/account">
             <FontAwesomeIcon icon={faUser} size="lg" color="hsl(var(--p))" />

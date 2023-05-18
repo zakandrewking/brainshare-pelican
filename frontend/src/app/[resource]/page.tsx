@@ -8,6 +8,7 @@ import useSWRInfinite from "swr/infinite";
 
 import supabase from "../supabase/client";
 import { capitalizeFirstLetter } from "../util";
+import { nameColumn } from "../shape/columns";
 
 const PAGE_SIZE = 20;
 
@@ -28,7 +29,9 @@ export default function ResourceList({
       .select("*", page === 0 ? { count: "exact" } : {})
       .eq("type", params.resource)
       .range(start, end);
-    if (error) throw Error(String(error));
+    if (error) {
+      throw Error(`${error.code} - ${error.message} - ${error.details}`);
+    }
     return { rows, ...(page === 0 ? { count } : {}) };
   };
 
@@ -44,10 +47,11 @@ export default function ResourceList({
     }; // SWR key
   };
 
-  const { data, error, isValidating, size, setSize } = useSWRInfinite(
-    getKey,
-    fetcher
-  );
+  const { data, error, isLoading, isValidating, size, setSize } =
+    useSWRInfinite(getKey, fetcher);
+
+  if (error) throw Error(String(error));
+  if (isLoading) return <>Loading...</>;
 
   const rows = data ? data.flatMap((ar) => ar.rows) : null;
   const count = data && data[0] && data[0].count ? data[0].count : 0;
@@ -59,7 +63,7 @@ export default function ResourceList({
         ?.map(
           (row, i): ReactNode => (
             <Link href={`/${params.resource}/${row.id}`} key={i}>
-              {_get(row, ["data", "name"], "")}
+              {_get(row, ["data", nameColumn], _get(row, "id", ""))}
             </Link>
           )
         )
