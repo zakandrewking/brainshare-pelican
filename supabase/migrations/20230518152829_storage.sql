@@ -1,9 +1,7 @@
--- CREATE POLICY "Anyone can read buckets"
---     ON storage.buckets FOR SELECT
---     TO authenticated, anon
---     USING ( true );
+create policy "Authenticated user can create files"
+    on storage.objects for insert to authenticated
+    with check ( bucket_id = 'files' );
 
--- CREATE POLICY "Anyone can read objects"
---     ON storage.objects FOR SELECT
---     TO authenticated, anon
---     USING ( true );
+create policy "Authenticated user can manage their own files"
+    on storage.objects for all
+    using ( bucket_id = 'files' and auth.uid() = owner );
