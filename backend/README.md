@@ -1,15 +1,20 @@
 # dev
 
-```
-poetry install
-```
+- `poetry install`
+- in VSCode, run all tasks
+- in VSCode, `Python: select interpreter`, choose poetry
+- in VSCode, Run and Debug
 
 # deploy
 
 ```sh
-cat .env.production | fly secrets import
-fly deploy
 fly redis create
+```
+
+```sh
+cd deploy/worker # or server
+cat ../../.env.production | fly secrets import
+fly deploy
 ```
 
 # test
@@ -27,6 +32,7 @@ poetry run pytest
 ssh into the fly container:
 
 ```
+cd deploy/worker # or server
 fly ssh issue --agent
 fly ssh console
 ```

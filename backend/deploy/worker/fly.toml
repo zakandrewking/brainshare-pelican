@@ -1,5 +1,5 @@
 # TODO split in two
-app = "brainshare-pelican-backend"
+app = "brainshare-pelican-backend-worker"
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "sjc"

@@ -10,6 +10,7 @@ import { ReactNode } from "react";
 import { config as faConfig } from "@fortawesome/fontawesome-svg-core";
 
 import ClientSideDrawerHandler from "./components/ClientSideDrawerHandler";
+import NavigationProgress from "./components/NavigationProgress";
 import SideMenu from "./components/SideMenu";
 import { AuthProvider } from "./supabase/auth";
 import { composeProviders } from "./util";
@@ -35,6 +36,7 @@ export default function RootLayout(props: {
     <Providers>
       <html lang="en">
         <body className={inter.className}>
+          <NavigationProgress />
           <div className="drawer drawer-mobile">
             <input
               id="top-nav-drawer"

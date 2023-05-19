@@ -3,7 +3,11 @@
   "compounds": [
     {
       "name": "Debug all",
-      "configurations": ["Debug frontend", "Debug backend"]
+      "configurations": [
+        "[Frontend] Debug",
+        "[Backend] Debug queue",
+        "[Backend] Debug server"
+      ]
     }
   ]
 }

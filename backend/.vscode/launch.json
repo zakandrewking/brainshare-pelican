@@ -5,9 +5,24 @@
     {
       "type": "python",
       "request": "launch",
-      "name": "Debug backend queue",
+      "name": "[Backend] Debug queue",
       "module": "celery",
       "args": ["-A", "backend.tasks", "worker", "--loglevel", "INFO"],
+      "envFile": "${workspaceFolder}/.env.local"
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "[Backend] Debug server",
+      "module": "uvicorn",
+      "args": [
+        "backend.main:app",
+        "--port",
+        "8030",
+        "--host",
+        "0.0.0.0",
+        "--reload"
+      ],
       "envFile": "${workspaceFolder}/.env.local"
     }
   ]
