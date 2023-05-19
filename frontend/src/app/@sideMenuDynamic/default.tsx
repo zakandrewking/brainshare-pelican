@@ -12,23 +12,11 @@ import { capitalizeFirstLetter } from "../util";
 
 const icons: { [key: string]: ReactNode } = {
   get atom() {
-    return (
-      <FontAwesomeIcon
-        icon={faAtom}
-        size="lg"
-        color="hsl(var(--p))"
-        fixedWidth
-      />
-    );
+    return <FontAwesomeIcon icon={faAtom} size="lg" fixedWidth />;
   },
   get arrowRightArrowLeft() {
     return (
-      <FontAwesomeIcon
-        icon={faArrowRightArrowLeft}
-        size="lg"
-        color="hsl(var(--p))"
-        fixedWidth
-      />
+      <FontAwesomeIcon icon={faArrowRightArrowLeft} size="lg" fixedWidth />
     );
   },
   get default() {

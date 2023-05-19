@@ -28,4 +28,5 @@ COPY . /app/
 
 EXPOSE 8080
 
-CMD ["celery", "-A", "carpenter.tasks", "worker", "--loglevel", "INFO"]
+# TODO split in two
+CMD ["celery", "-A", "backend.tasks", "worker", "--loglevel", "INFO"]

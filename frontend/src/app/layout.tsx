@@ -69,15 +69,8 @@ export default function RootLayout(props: {
                     style={{
                       fontSize: "30px",
                       fontWeight: "bolder",
-                      color: "hsl(var(--p))",
                     }}
                   >
-                    {/* <div
-                      className="animate-bounce"
-                      style={{ fontSize: "80px", display: "inline-block" }}
-                    >
-                      �
-                    </div> */}
                     Pelican
                   </h1>
                 </div>

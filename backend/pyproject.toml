@@ -2,7 +2,7 @@
 line-length = 100
 
 [tool.poetry]
-name = "brainshare-pelican-carpenter"
+name = "brainshare-pelican-backend"
 version = "0.1.0"
 description = ""
 authors = ["Zachary King <zaking17@gmail.com>"]
@@ -11,6 +11,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 celery = { extras = ["redis"], version = "^5.2.7" }
+supabase = "^1.0.3"
 
 [tool.poetry.group.testing.dependencies]
 pytest = "^7.2.2"

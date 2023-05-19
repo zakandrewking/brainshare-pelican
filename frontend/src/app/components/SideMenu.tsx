@@ -15,12 +15,7 @@ export default function SideMenu({ children }: { children: ReactNode }) {
       <div>
         <li key="home">
           <Link href="/">
-            <FontAwesomeIcon
-              icon={faSwatchbook}
-              size="lg"
-              color="hsl(var(--p))"
-              fixedWidth
-            />
+            <FontAwesomeIcon icon={faSwatchbook} size="lg" fixedWidth />
             Home
           </Link>
         </li>
@@ -39,23 +34,13 @@ export default function SideMenu({ children }: { children: ReactNode }) {
         </li> */}
         <li key="files">
           <Link href="/files">
-            <FontAwesomeIcon
-              icon={faFile}
-              size="lg"
-              color="hsl(var(--p))"
-              fixedWidth
-            />
+            <FontAwesomeIcon icon={faFile} size="lg" fixedWidth />
             Files
           </Link>
         </li>
         <li key="account">
           <Link href="/account">
-            <FontAwesomeIcon
-              icon={faUser}
-              size="lg"
-              color="hsl(var(--p))"
-              fixedWidth
-            />
+            <FontAwesomeIcon icon={faUser} size="lg" fixedWidth />
             Account
           </Link>
         </li>

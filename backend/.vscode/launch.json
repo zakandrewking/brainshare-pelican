@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // TODO split in two
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "Debug backend queue",
+      "module": "celery",
+      "args": ["-A", "backend.tasks", "worker", "--loglevel", "INFO"],
+      "envFile": "${workspaceFolder}/.env.local"
+    }
+  ]
+}
