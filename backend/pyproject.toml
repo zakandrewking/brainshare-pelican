@@ -11,12 +11,15 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 celery = { extras = ["redis"], version = "^5.2.7" }
-supabase = "^1.0.3"
 asyncpg = "^0.27.0"
 fastapi = "^0.95.2"
 glom = "^23.3.0"
 sqlmodel = "^0.0.8"
 sqlalchemy = { version = "^1.4.41", extras = ["asyncio"] }
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
+pyjwt = "^2.7.0"
+supabase = "^1.0.3"
+storage3 = "^0.5.2"
 
 [tool.poetry.group.testing.dependencies]
 pytest = "^7.2.2"

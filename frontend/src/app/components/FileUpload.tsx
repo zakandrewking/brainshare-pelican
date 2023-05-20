@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
@@ -7,6 +6,7 @@ import { mutate } from "swr";
 
 import supabase from "@/app/supabase/client";
 
+import { DefaultService } from "../client";
 import { useAuth } from "../supabase/auth";
 
 export default function FileUpload() {
@@ -24,6 +24,10 @@ export default function FileUpload() {
           throw Error(`${error.name} - ${error.message}`);
         }
         mutate("/files", (files) => [...files, { name: fileName }]);
+        DefaultService.postRunGetCategoriesRunGetCategoriesPost({
+          bucket: "files",
+          name: fileName,
+        });
       } catch (error) {
         console.log(`Error Uploading file: ${error}`);
         setError("Something went wrong. Please try again.");

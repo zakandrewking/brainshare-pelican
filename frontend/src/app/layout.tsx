@@ -9,6 +9,7 @@ import { ReactNode } from "react";
 
 import { config as faConfig } from "@fortawesome/fontawesome-svg-core";
 
+import ClientConfiguration from "./components/ClientConfiguration";
 import ClientSideDrawerHandler from "./components/ClientSideDrawerHandler";
 import NavigationProgress from "./components/NavigationProgress";
 import SideMenu from "./components/SideMenu";
@@ -34,6 +35,7 @@ export default function RootLayout(props: {
 
   return (
     <Providers>
+      <ClientConfiguration />
       <html lang="en">
         <body className={inter.className}>
           <NavigationProgress />

@@ -10,6 +10,7 @@ import {
 
 import { Session } from "@supabase/supabase-js";
 
+import { OpenAPI } from "../client";
 import supabase from "./client";
 
 interface AuthState {
@@ -65,16 +66,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  //   // When the auth state changes, configure the backend API client
-  //   useEffect(() => {
-  //     if (state.session) {
-  //       OpenAPI.HEADERS = {
-  //         Authorization: `Bearer ${state.session.access_token}`,
-  //       };
-  //     } else {
-  //       OpenAPI.HEADERS = undefined;
-  //     }
-  //   }, [state]);
+  // When the auth state changes, configure the backend API client
+  useEffect(() => {
+    if (state.session) {
+      OpenAPI.HEADERS = {
+        Authorization: `Bearer ${state.session.access_token}`,
+      };
+    } else {
+      OpenAPI.HEADERS = undefined;
+    }
+  }, [state]);
 
   //   // When the auth state is logged out, clear stores
   //   useEffect(() => {
