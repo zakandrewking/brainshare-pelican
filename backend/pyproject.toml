@@ -11,15 +11,16 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 celery = { extras = ["redis"], version = "^5.2.7" }
-asyncpg = "^0.27.0"
 fastapi = "^0.95.2"
 glom = "^23.3.0"
 sqlmodel = "^0.0.8"
-sqlalchemy = { version = "^1.4.41", extras = ["asyncio"] }
-uvicorn = {extras = ["standard"], version = "^0.22.0"}
+sqlalchemy = { version = "^1.4.41" }
+uvicorn = { extras = ["standard"], version = "^0.22.0" }
 pyjwt = "^2.7.0"
 supabase = "^1.0.3"
 storage3 = "^0.5.2"
+# sticking w psycopg2 in case we want to use it as the celery backend
+psycopg2-binary = "^2.9.6"
 
 [tool.poetry.group.testing.dependencies]
 pytest = "^7.2.2"
@@ -30,6 +31,7 @@ mypy = "^1.1.1"
 black = "^23.1.0"
 types-redis = "^4.5.4.1"
 sqlalchemy-stubs = "^0.4"
+sqlacodegen = { git = "https://github.com/agronholm/sqlacodegen", branch = "master" }
 
 [build-system]
 requires = ["poetry-core"]

@@ -15,16 +15,24 @@ def check_session(request: Request) -> str:
 
     access_token = request.headers["Authorization"].replace("Bearer ", "")
 
-    # authorize by validating the JWT without a round-trip to Supabase
+    _ = decode_access_token(access_token)
+
+    return access_token
+
+
+def decode_access_token(access_token: str) -> str:
+    """Authorize by validating the JWT without a round-trip to Supabase.
+
+    Returns the user id.
+    """
     try:
-        jwt.decode(
+        res = jwt.decode(
             access_token, supabase_jwt_secret, audience="authenticated", algorithms=["HS256"]
         )
+        return res["sub"]
     except jwt.ExpiredSignatureError as e:
         print(e)
         raise HTTPException(status_code=401, detail="Session is expired. Please log in again.")
     except Exception as e:
         print(e)
         raise HTTPException(status_code=401, detail="Could not authenticate")
-
-    return access_token

@@ -3,7 +3,7 @@ export type Json =
   | number
   | boolean
   | null
-  | {{ [key: string]: Json } [key: string]: Json }
+  | { [key: string]: Json }
   | Json[]
 
 export interface Database {
@@ -34,6 +34,70 @@ export interface Database {
   }
   public: {
     Tables: {
+      celery_taskmeta: {
+        Row: {
+          args: string | null
+          date_done: string | null
+          id: number
+          kwargs: string | null
+          name: string | null
+          queue: string | null
+          result: string | null
+          retries: number | null
+          status: string | null
+          task_id: string | null
+          traceback: string | null
+          worker: string | null
+        }
+        Insert: {
+          args?: string | null
+          date_done?: string | null
+          id: number
+          kwargs?: string | null
+          name?: string | null
+          queue?: string | null
+          result?: string | null
+          retries?: number | null
+          status?: string | null
+          task_id?: string | null
+          traceback?: string | null
+          worker?: string | null
+        }
+        Update: {
+          args?: string | null
+          date_done?: string | null
+          id?: number
+          kwargs?: string | null
+          name?: string | null
+          queue?: string | null
+          result?: string | null
+          retries?: number | null
+          status?: string | null
+          task_id?: string | null
+          traceback?: string | null
+          worker?: string | null
+        }
+      }
+      celery_tasksetmeta: {
+        Row: {
+          date_done: string | null
+          id: number
+          result: string | null
+          taskset_id: string | null
+        }
+        Insert: {
+          date_done?: string | null
+          id: number
+          result?: string | null
+          taskset_id?: string | null
+        }
+        Update: {
+          date_done?: string | null
+          id?: number
+          result?: string | null
+          taskset_id?: string | null
+        }
+      }
       edge: {
         Row: {
           data: Json | null

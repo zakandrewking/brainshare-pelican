@@ -8,7 +8,7 @@ following steps:
 1. Apply the new schema with `supabase db reset`
 1. Stash your changes
 1. Run `supabase db diff -f <name for changes>`
-1. Move the new migration to `migrations_squashed` if there are changes
+1. Move the new migration to `squashed_migrations` if there are changes
 1. Pop the stash
 1. Git commit
 1. Manually modify the remote migrations table

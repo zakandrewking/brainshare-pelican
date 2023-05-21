@@ -13,7 +13,7 @@ create policy "Authenticated user can manage their profile" on profile
 -- roles
 
 create table user_role (
-    user_id uuid references profile(id) on delete cascade,
+    user_id uuid references auth.users(id) on delete cascade,
     role text not null check (role in ('admin', 'curator')),
     constraint user_role_pkey primary key (user_id, role)
 );
