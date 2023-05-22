@@ -1,9 +1,11 @@
-# TODO split in two
-app = "brainshare-pelican-backend-worker"
+app = "brainshare-pelican-backend-server"
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "sjc"
 processes = []
+
+[build]
+dockerfile = "Dockerfile.server"
 
 [env]
 port = "8080"

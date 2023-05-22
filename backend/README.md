@@ -7,14 +7,28 @@
 
 # deploy
 
+## redis
+
 ```sh
 fly redis create
 ```
 
+## server
+
 ```sh
-cd deploy/worker # or server
-cat ../../.env.production | fly secrets import
-fly deploy
+APP=brainshare-pelican-backend-server
+fly apps create $APP # first time
+cat .env.production | fly secrets import -a $APP
+fly deploy --config fly.server.toml -a $APP
+```
+
+## queue
+
+```sh
+APP=brainshare-pelican-backend-worker
+fly apps create $APP # first time
+cat .env.production | fly secrets import -a $APP
+fly deploy --config fly.worker.toml -a $APP
 ```
 
 # test

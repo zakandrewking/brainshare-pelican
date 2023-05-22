@@ -75,6 +75,7 @@ export default function RootLayout(props: {
                       fontWeight: "bolder",
                     }}
                   >
+                    {/* <div className="animate-spin text-7xl">🦤 Dodo</div> */}
                     Pelican
                   </h1>
                 </div>
