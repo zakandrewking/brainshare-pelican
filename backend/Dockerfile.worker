@@ -26,7 +26,4 @@ RUN poetry install
 
 COPY . /app/
 
-EXPOSE 8080
-
-# TODO split in two
-CMD ["celery", "-A", "backend.tasks", "worker", "--loglevel", "INFO"]
+CMD ["poetry", "run", "celery", "-A", "backend.tasks", "worker", "--loglevel", "INFO"]

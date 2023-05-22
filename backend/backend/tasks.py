@@ -32,15 +32,19 @@ Session = sessionmaker(bind=engine)
 
 @app.task
 def get_categories(bucket: str, name: str, access_token: str) -> None:
+    # TODO switch to logging.debug
+    print("Starting")
     headers = {
         "apikey": key,
         "Authorization": f"Bearer {access_token}",
     }
+    print("downloading")
     storage_client = create_storage_client(f"{url}/storage/v1", headers, is_async=False)
     file: bytes = storage_client.from_(bucket).download(name)
     data = json.loads(file.decode("utf-8"))
     categories = str(data.keys())
     user_id = decode_access_token(access_token)
+    print("saving")
     with Session() as session:
         step = Step(
             description=f"Categories: {categories}",
@@ -50,3 +54,4 @@ def get_categories(bucket: str, name: str, access_token: str) -> None:
         )
         session.add(step)
         session.commit()
+    print("Added step to database")
