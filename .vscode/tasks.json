@@ -39,7 +39,7 @@
     },
     {
       "label": "Start all",
-      "dependsOn": ["Supabase start", "Redis start"],
+      "dependsOn": ["Supabase start", "Redis start", "JupyterLab start"],
       "problemMatcher": []
     }
   ]

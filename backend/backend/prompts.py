@@ -1,20 +1,30 @@
-tool_description_kgquery_list_types = """
+from langchain.prompts import PromptTemplate
+
+tool_description_kgquery_list_types = PromptTemplate(
+    input_variables=[],
+    template="""
 Access to the knowledge graph is available using the kgquery tool. You can use
 kgquery.list_types function to retrieve a list of the node types in the
 knowledge graph. To use it, return:
 
 tool: kgquery.list_types
-"""
+""",
+)
 
-tool_description_kgquery_search = """
+tool_description_kgquery_search = PromptTemplate(
+    input_variables=[],
+    template="""
 You can use kgquery.search function to retrieve a list of matching nodes in the
 knowledge graph. To use it, you must include a type and a search query, like
 this:
 
 tool: kgquery.search type: country query: Andorra
-"""
+""",
+)
 
-dataset_analyze = """
+dataset_analyze = PromptTemplate(
+    input_variables=["tools", "filename", "description", "n_rows", "data_head"],
+    template="""
 Brainshare is an application that allows users to upload datasets, analyze them,
 and incorporate them into a global, collaborative knowledge graph.
 
@@ -27,4 +37,5 @@ data row are:
 {data_head}
 
 What next steps do you recommend for the user in brainshare?
-"""
+""",
+)
