@@ -1,0 +1,7 @@
+FROM python:3.11-slim-bullseye
+
+RUN pip install pandas
+
+WORKDIR /app
+
+CMD ["sleep", "infinity"]

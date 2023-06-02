@@ -2,7 +2,10 @@ FROM python:3.11-slim-bullseye
 
 # Install git
 RUN apt update \
-    && apt install -y git gcc
+    && apt install -y git gcc curl
+
+# Install flyctl
+RUN curl -L https://fly.io/install.sh | FLYCTL_INSTALL=/usr/local sh
 
 # Configure Poetry
 ENV POETRY_VERSION=1.4.0
@@ -26,4 +29,6 @@ RUN poetry install
 
 COPY . /app/
 
-CMD ["poetry", "run", "celery", "-A", "backend.tasks", "worker", "--loglevel", "INFO"]
+# NOTE: This also runs the scheduler, so it should only be run once with the -B
+# flag
+CMD ["poetry", "run", "celery", "-A", "backend.tasks", "worker", "-B", "--loglevel", "INFO"]

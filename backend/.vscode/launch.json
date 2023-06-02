@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "[Backend] Debug queue",
       "module": "celery",
-      "args": ["-A", "backend.tasks", "worker", "--loglevel", "INFO"],
+      "args": ["-A", "backend.tasks", "worker", "-B", "--loglevel", "INFO"],
       "envFile": "${workspaceFolder}/.env.local"
     },
     {

@@ -1,0 +1,10 @@
+app = "brainshare-pelican-backend-enclave"
+kill_signal = "SIGINT"
+kill_timeout = 5
+primary_region = "sjc"
+
+[build]
+dockerfile = "Dockerfile.enclave"
+
+[experimental]
+auto_rollback = true

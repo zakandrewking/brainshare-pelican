@@ -6,3 +6,5 @@ __pycache__/
 .DS_Store
 Untitled.ipynb
 build/
+
+celerybeat-schedule.db
