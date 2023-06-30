@@ -86,7 +86,7 @@ def scale_down_one_day(app: str) -> None:
     subprocess.run(
         f"""
         fly machine list -a {app} --json | \
-            TZ=UTC jq -cr 'map(select(.created_at | fromdateiso8601 < (now - (24 * 3600))))[1:] | .[].id' | \
+            TZ=UTC jq -cr 'map(select(.created_at | fromdateiso8601 < (now - (24 * 3600)))) | .[].id' | \
             xargs -I _ fly machine stop _
     """,
         shell=True,
