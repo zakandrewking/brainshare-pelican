@@ -11,7 +11,7 @@ import { config as faConfig } from "@fortawesome/fontawesome-svg-core";
 
 import ClientConfiguration from "./components/ClientConfiguration";
 import ClientSideDrawerHandler from "./components/ClientSideDrawerHandler";
-import NavigationProgress from "./components/NavigationProgress";
+// import NavigationProgress from "./components/NavigationProgress";
 import SideMenu from "./components/SideMenu";
 import { AuthProvider } from "./supabase/auth";
 import { composeProviders } from "./util";
@@ -38,7 +38,7 @@ export default function RootLayout(props: {
       <ClientConfiguration />
       <html lang="en">
         <body className={inter.className}>
-          <NavigationProgress />
+          {/* <NavigationProgress /> */}
           <div className="drawer drawer-mobile">
             <input
               id="top-nav-drawer"

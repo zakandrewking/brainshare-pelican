@@ -1,8 +1,10 @@
 "use client";
 
-// Stop gap based on
+// Stop gap based on this discussion, but it's pretty broken
 // https://github.com/vercel/next.js/discussions/41745#discussioncomment-4237963
-// until router events are implemented
+// better wait until router events are implemented
+//
+// TODO try: https://github.com/apal21/nextjs-progressbar/issues/86#issuecomment-1597912679
 
 import NProgress, { set } from "nprogress";
 import { useEffect, useState } from "react";
