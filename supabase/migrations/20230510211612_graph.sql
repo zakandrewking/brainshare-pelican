@@ -1,3 +1,39 @@
+-- https://tech.ingrid.com/sql-as-graph-database/
+-- WITH RECURSIVE traverse(node_id, entity_type, entity_id) AS (
+--     SELECT
+--         node_id,
+--         entity_type,
+--         entity_id
+--     FROM
+--         entity
+--     WHERE
+--         entity.entity_id = $1 AND
+--         entity.entity_type = 'tracking_number'
+--     UNION ALL
+--     SELECT
+--         entity.node_id,
+--         entity.entity_type,
+--         entity.entity_id
+--     FROM traverse JOIN
+--     relation ON traverse.node_id = relation.child JOIN
+--     entity ON relation.parent = entity.node_id
+-- )
+-- SELECT
+--     traverse.entity_id as order_id
+-- FROM traverse
+-- WHERE traverse.entity_type = 'order'
+-- GROUP BY traverse.entity_id
+-- ORDER BY traverse.entity_id ASC
+-- LIMIT $2;
+--
+-- Also: https://www.dylanpaulus.com/posts/postgres-is-a-graph-database/
+--
+-- https://news.ycombinator.com/item?id=35386948
+--
+-- https://www.alibabacloud.com/blog/postgresql-graph-search-practices---10-billion-scale-graph-with-millisecond-response_595039
+--
+-- and THEN switch to EdgeDB, AGE, Postgres+GQL, or Neo4j
+
 create table node_type (
   name text primary key,
   icon text,
